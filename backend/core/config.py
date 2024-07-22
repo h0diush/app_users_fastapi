@@ -40,7 +40,7 @@ class AccessToken(BaseModel):
     private_key_path: Path = BASE_DIR / "certs" / "jwt-private.pem"
     public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
     algorithm: str = "RS256"
-    lifetime_seconds = 3600
+    lifetime_seconds: int = 3600
     reset_password_token_secret: str
     verification_token_secret: str
 
