@@ -7,7 +7,6 @@ from fastapi_users_db_sqlalchemy.access_token import (
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
-from core.models.mixins import IntIdMixin
 from core.types.user_id import UserIdType
 from .base import Base
 
@@ -15,7 +14,7 @@ if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-class AccessToken(Base, IntIdMixin, SQLAlchemyBaseAccessTokenTable[int]):
+class AccessToken(Base, SQLAlchemyBaseAccessTokenTable[int]):
     user_id: Mapped[UserIdType] = mapped_column(
         ForeignKey("users.id", ondelete="cascade"),
         nullable=False,
