@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).parent.parent
 
+
 class RunConfig(BaseModel):
     port: int = 8000
     host: str = "0.0.0.0"
