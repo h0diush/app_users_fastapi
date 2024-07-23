@@ -3,7 +3,6 @@ from pathlib import Path
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-
 BASE_DIR = Path(__file__).parent.parent
 
 
@@ -39,6 +38,14 @@ class DataBaseConfig(BaseModel):
     }
 
 
+class SuperUserConfig(BaseModel):
+    email: str
+    password: str
+    is_active: bool
+    is_superuser: bool
+    is_verified: bool
+
+
 class AccessToken(BaseModel):
     private_key_path: Path = BASE_DIR / "certs" / "jwt-private.pem"
     public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
@@ -59,6 +66,7 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
     access_token: AccessToken
+    superuser: SuperUserConfig
 
 
 settings = Settings()
